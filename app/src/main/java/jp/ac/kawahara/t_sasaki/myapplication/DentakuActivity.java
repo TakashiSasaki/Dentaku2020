@@ -22,4 +22,4 @@ public class DentakuActivity extends AppCompatActivity {
             buttonPadLinearLayout.addView(b);
         }
     }
-}
+}//DentakuActivity
