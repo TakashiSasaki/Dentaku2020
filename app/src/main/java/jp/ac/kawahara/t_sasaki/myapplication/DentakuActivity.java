@@ -38,26 +38,37 @@ public class DentakuActivity extends AppCompatActivity {
 
         //LinearLayoutとButtonをforループで生成して追加する
         for (int i = 0; i < 5; ++i) {
-            final LinearLayout newLL = new LinearLayout(getApplicationContext());
+            final LinearLayout newLL = new LinearLayout
+                    (this.getApplicationContext());
             newLL.setBackgroundColor(Color.YELLOW);
-            final ViewGroup.LayoutParams newLP = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
             newLL.setOrientation(LinearLayout.HORIZONTAL);
+            final ViewGroup.LayoutParams newLP =
+                    new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+            buttonPadLinearLayout.addView(newLL, newLP);
 
             for (int j = 0; j < 4; ++j) {
-                final Button b = new Button(this.getApplicationContext());
+                final Button b = new Button
+                        (this.getApplicationContext());
                 //b.setText(i + "," + j);
+                b.setBackgroundColor(Color.RED);
                 b.setText(buttonTexts[i * 4 + j]);
+                b.setTextSize(22);
+                b.setTextColor(Color.WHITE);
                 //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
                 //各ボタンにIDをつけて識別することもできる
-                b.setTag(buttonTags[i * 4 + j]);
-                final LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                //b.setTag(buttonTags[i * 4 + j]);
+                final LinearLayout.LayoutParams lllp =
+                        new LinearLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                lllp.bottomMargin = 5;
+                lllp.topMargin = 5;
+                lllp.leftMargin = 5;
+                lllp.rightMargin = 5;
                 newLL.addView(b, lllp);
             }//for j
-            buttonPadLinearLayout.addView(newLL, newLP);
         }//for i
     }
 }//DentakuActivity
