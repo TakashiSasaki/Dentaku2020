@@ -1,7 +1,7 @@
 package jp.ac.kawahara.t_sasaki.myapplication;
 
+import android.annotation.SuppressLint;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,6 +18,7 @@ public class ButtonClickListener
         this.operator = operator;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         switch ((String) v.getTag()) {
