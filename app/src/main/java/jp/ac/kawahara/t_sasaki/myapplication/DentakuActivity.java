@@ -58,7 +58,7 @@ public class DentakuActivity extends AppCompatActivity {
                 b.setTextColor(Color.WHITE);
                 //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
                 //各ボタンにIDをつけて識別することもできる
-                //b.setTag(buttonTags[i * 4 + j]);
+                b.setTag(buttonTags[i * 4 + j]);
                 final LinearLayout.LayoutParams lllp =
                         new LinearLayout.LayoutParams(
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
