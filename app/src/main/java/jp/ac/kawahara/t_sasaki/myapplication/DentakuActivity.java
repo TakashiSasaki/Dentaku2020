@@ -1,14 +1,13 @@
 package jp.ac.kawahara.t_sasaki.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class DentakuActivity extends AppCompatActivity {
 
@@ -20,8 +19,14 @@ public class DentakuActivity extends AppCompatActivity {
                     "7", "8", "9", "×",
                     "4", "5", "6", "-",
                     "1", "2", "3", "+",
-                    "±", "0", ".", "="
-            };
+                    "±", "0", ".", "="};
+
+    final String[] buttonTags = {
+            "", "", "", "divide",
+            "seven", "eight", "nine", "multiply",
+            "four", "five", "six", "minus",
+            "one", "two", "three", "plus",
+            "sign", "zero", "dot", "equal"};
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -44,6 +49,7 @@ public class DentakuActivity extends AppCompatActivity {
                 final Button b = new Button(this.getApplicationContext());
                 //b.setText(i + "," + j);
                 b.setText(buttonTexts[i * 4 + j]);
+                b.setTag(buttonTags[i * 4 + j]);
                 final LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
