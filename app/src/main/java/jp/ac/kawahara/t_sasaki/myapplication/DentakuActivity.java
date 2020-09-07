@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,13 @@ public class DentakuActivity extends AppCompatActivity {
         this.buttonPadLinearLayout =
                 findViewById(R.id.buttonPadLinearLayout);
 
+        final ButtonClickListener buttonClickListener =
+                new ButtonClickListener(
+                        (EditText) findViewById(R.id.operand1),
+                        (EditText) findViewById(R.id.operator),
+                        (EditText) findViewById(R.id.operand2)
+                );
+
         //LinearLayoutとButtonをforループで生成して追加する
         for (int i = 0; i < 5; ++i) {
             final LinearLayout newLL = new LinearLayout
@@ -59,6 +67,8 @@ public class DentakuActivity extends AppCompatActivity {
                 //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
                 //各ボタンにIDをつけて識別することもできる
                 b.setTag(buttonTags[i * 4 + j]);
+                b.setOnClickListener(buttonClickListener);
+
                 final LinearLayout.LayoutParams lllp =
                         new LinearLayout.LayoutParams(
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -70,5 +80,5 @@ public class DentakuActivity extends AppCompatActivity {
                 newLL.addView(b, lllp);
             }//for j
         }//for i
-    }
+    }//onCreate
 }//DentakuActivity
