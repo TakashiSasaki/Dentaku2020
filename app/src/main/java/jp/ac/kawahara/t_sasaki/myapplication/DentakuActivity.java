@@ -15,6 +15,14 @@ public class DentakuActivity extends AppCompatActivity {
 
     LinearLayout buttonPadLinearLayout;
 
+    final String[] buttonTexts =
+            {"", "", "", "÷",
+                    "7", "8", "9", "×",
+                    "4", "5", "6", "-",
+                    "1", "2", "3", "+",
+                    "±", "0", ".", "="
+            };
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +32,7 @@ public class DentakuActivity extends AppCompatActivity {
                 findViewById(R.id.buttonPadLinearLayout);
 
         //LinearLayoutとButtonをforループで生成して追加する
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 5; ++i) {
             final LinearLayout newLL = new LinearLayout(getApplicationContext());
             newLL.setBackgroundColor(Color.YELLOW);
             final ViewGroup.LayoutParams newLP = new LinearLayout.LayoutParams(
@@ -34,13 +42,14 @@ public class DentakuActivity extends AppCompatActivity {
 
             for (int j = 0; j < 4; ++j) {
                 final Button b = new Button(this.getApplicationContext());
-                b.setText(i + "," + j);
+                //b.setText(i + "," + j);
+                b.setText(buttonTexts[i * 4 + j]);
                 final LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
                 newLL.addView(b, lllp);
-            }
+            }//for j
             buttonPadLinearLayout.addView(newLL, newLP);
-        }
+        }//for i
     }
 }//DentakuActivity
