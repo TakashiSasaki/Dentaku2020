@@ -49,6 +49,8 @@ public class DentakuActivity extends AppCompatActivity {
                 final Button b = new Button(this.getApplicationContext());
                 //b.setText(i + "," + j);
                 b.setText(buttonTexts[i * 4 + j]);
+                //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
+                //各ボタンにIDをつけて識別することもできる
                 b.setTag(buttonTags[i * 4 + j]);
                 final LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
