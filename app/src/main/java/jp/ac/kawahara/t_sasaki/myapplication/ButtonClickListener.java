@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class ButtonClickListener
         implements View.OnClickListener {
 
@@ -22,8 +24,8 @@ public class ButtonClickListener
     @Override
     public void onClick(View v) {
         final String sOperator = operator.getText().toString();
-        final String sOperand1 = operand1.getText().toString();
-        final String sOperand2 = operand2.getText().toString();
+        //final String sOperand1 = operand1.getText().toString();
+        //final String sOperand2 = operand2.getText().toString();
 
         switch ((String) v.getTag()) {
             case "zero":
@@ -70,18 +72,22 @@ public class ButtonClickListener
                 break;
             case "equal":
                 try {
+                    final double o1 = Double.parseDouble(
+                            operand1.getText().toString());
+                    final double o2 = Double.parseDouble(
+                            operand2.getText().toString());
                     switch (sOperator) {
                         case "+":
-                            operatePlus();
+                            operatePlus(o1, o2);
                             break;
                         case "-":
-                            operateMinus();
+                            operateMinus(o1, o2);
                             break;
                         case "/":
-                            operateDivide();
+                            operateDivide(o1, o2);
                             break;
                         case "*":
-                            operateMultiply();
+                            operateMultiply(o1, o2);
                             break;
                     }//switch
                 } catch (NumberFormatException e) {
@@ -95,53 +101,39 @@ public class ButtonClickListener
     }//onClick
 
     private void inputOneNumber(final int i) {
-        if (operator.getText().toString().contentEquals("")) {
-            operand1.setText(operand1.getText().toString() + i);
-        } else {
-            operand2.setText(operand2.getText().toString() + i);
-        }
+        if (operator.getText().toString().contentEquals(""))
+            operand1.setText(
+                    String.format(Locale.US,
+                            "%s%d",
+                            operand1.getText().toString(), i));
+        else
+            operand2.setText(
+                    String.format(Locale.US,
+                            "%s%d",
+                            operand2.getText().toString(), i));
+
     }//inputOneNumber
 
-    private void operatePlus() {
-        final double o1 = Double.parseDouble(
-                operand1.getText().toString());
-        final double o2 = Double.parseDouble(
-                operand2.getText().toString());
-        final double o3 = o1 + o2;
-        operand1.setText("" + o3);
+    private void operatePlus(final double o1, final double o2) {
+        operand1.setText(String.format(Locale.US, "%f", (o1 + o2)));
         operator.setText("");
         operand2.setText("");
     }//operatePlus
 
-    private void operateMinus() {
-        final double o1 = Double.parseDouble(
-                operand1.getText().toString());
-        final double o2 = Double.parseDouble(
-                operand2.getText().toString());
-        final double o3 = o1 - o2;
-        operand1.setText("" + o3);
+    private void operateMinus(final double o1, final double o2) {
+        operand1.setText(String.format(Locale.US, "%f", o1 - o2));
         operator.setText("");
         operand2.setText("");
     }//operateMinus
 
-    private void operateDivide() {
-        final double o1 = Double.parseDouble(
-                operand1.getText().toString());
-        final double o2 = Double.parseDouble(
-                operand2.getText().toString());
-        final double o3 = o1 / o2;
-        operand1.setText("" + o3);
+    private void operateDivide(final double o1, final double o2) {
+        operand1.setText(String.format(Locale.US, "%f", o1 / o2));
         operator.setText("");
         operand2.setText("");
     }//operateDivide
 
-    private void operateMultiply() {
-        final double o1 = Double.parseDouble(
-                operand1.getText().toString());
-        final double o2 = Double.parseDouble(
-                operand2.getText().toString());
-        final double o3 = o1 * o2;
-        operand1.setText("" + o3);
+    private void operateMultiply(final double o1, final double o2) {
+        operand1.setText(String.format(Locale.US, "%f", o1 * o2));
         operator.setText("");
         operand2.setText("");
     }//operateMultiply
