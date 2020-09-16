@@ -93,9 +93,13 @@ public class ButtonClickListener
                     }//switch
                 } catch (NumberFormatException e) {
                     Toast.makeText(v.getContext(),
-                            "NumberFormatException",
+                            e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
+                } catch (RuntimeException e) {
+                    Toast.makeText(v.getContext(),
+                            e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case "allclear":
@@ -157,6 +161,10 @@ public class ButtonClickListener
     }//operateMinus
 
     private void operateDivide(final double o1, final double o2) {
+        final double result = o1 / o2;
+        if (!Double.isFinite(result)) {
+            throw new RuntimeException("not a finite number");
+        }
         operand1.setText(String.format(Locale.US, "%f", o1 / o2));
         operator.setText("");
         operand2.setText("");
