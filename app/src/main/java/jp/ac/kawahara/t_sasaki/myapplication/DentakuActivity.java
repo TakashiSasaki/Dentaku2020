@@ -3,6 +3,7 @@ package jp.ac.kawahara.t_sasaki.myapplication;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,6 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DentakuActivity extends AppCompatActivity {
-
 
     LinearLayout buttonPadLinearLayout;
 
@@ -67,7 +67,7 @@ public class DentakuActivity extends AppCompatActivity {
                 //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
                 //各ボタンにIDをつけて識別することもできる
                 b.setTag(buttonTags[i * 4 + j]);
-                b.setOnClickListener(buttonClickListener);
+                   b.setOnClickListener(buttonClickListener);
 
                 final LinearLayout.LayoutParams lllp =
                         new LinearLayout.LayoutParams(
