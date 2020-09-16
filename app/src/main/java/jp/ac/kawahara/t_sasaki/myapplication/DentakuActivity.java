@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,14 +17,14 @@ public class DentakuActivity extends AppCompatActivity {
     LinearLayout buttonPadLinearLayout;
 
     final String[] buttonTexts =
-            {"", "", "", "÷",
+            {"AC", "C", "Del", "÷",
                     "7", "8", "9", "×",
                     "4", "5", "6", "-",
                     "1", "2", "3", "+",
                     "±", "0", ".", "="};
 
     final String[] buttonTags = {
-            "", "", "", "divide",
+            "allclear", "clear", "delete", "divide",
             "seven", "eight", "nine", "multiply",
             "four", "five", "six", "minus",
             "one", "two", "three", "plus",
@@ -39,9 +40,9 @@ public class DentakuActivity extends AppCompatActivity {
 
         final ButtonClickListener buttonClickListener =
                 new ButtonClickListener(
-                        (EditText) findViewById(R.id.operand1),
-                        (EditText) findViewById(R.id.operator),
-                        (EditText) findViewById(R.id.operand2)
+                        (TextView) findViewById(R.id.operand1),
+                        (TextView) findViewById(R.id.operator),
+                        (TextView) findViewById(R.id.operand2)
                 );
 
         //LinearLayoutとButtonをforループで生成して追加する
@@ -67,7 +68,7 @@ public class DentakuActivity extends AppCompatActivity {
                 //同じイベントリスナで複数のボタンを処理する際にボタンを識別するためタグをつける
                 //各ボタンにIDをつけて識別することもできる
                 b.setTag(buttonTags[i * 4 + j]);
-                   b.setOnClickListener(buttonClickListener);
+                b.setOnClickListener(buttonClickListener);
 
                 final LinearLayout.LayoutParams lllp =
                         new LinearLayout.LayoutParams(

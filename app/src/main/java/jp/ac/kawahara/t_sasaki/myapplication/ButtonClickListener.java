@@ -3,6 +3,7 @@ package jp.ac.kawahara.t_sasaki.myapplication;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -10,11 +11,11 @@ import java.util.Locale;
 public class ButtonClickListener
         implements View.OnClickListener {
 
-    final EditText operand1, operator, operand2;
+    final TextView operand1, operator, operand2;
 
-    ButtonClickListener(EditText operand1,
-                        EditText operator,
-                        EditText operand2) {
+    ButtonClickListener(TextView operand1,
+                        TextView operator,
+                        TextView operand2) {
         this.operand1 = operand1;
         this.operand2 = operand2;
         this.operator = operator;
@@ -95,6 +96,35 @@ public class ButtonClickListener
                             "NumberFormatException",
                             Toast.LENGTH_SHORT)
                             .show();
+                }
+                break;
+            case "allclear":
+                operand1.setText("");
+                operator.setText("");
+                operand2.setText("");
+                break;
+            case "clear":
+                if (!operand2.getText().toString().contentEquals("")) {
+                    operand2.setText("");
+                } else if (!operator.getText().toString().contentEquals("")) {
+                    operator.setText("");
+                } else if (!operand1.getText().toString().contentEquals("")) {
+                    operand1.setText("");
+                }
+                break;
+            case "delete":
+                if (!operand2.getText().toString().contentEquals("")) {
+                    operand2.setText(
+                            operand2.getText().toString().substring(
+                                    0,
+                                    operand2.getText().length() - 1));
+                } else if (!operator.getText().toString().contentEquals("")) {
+                    operator.setText("");
+                } else if (!operand1.getText().toString().contentEquals("")) {
+                    operand1.setText(
+                            operand1.getText().toString().substring(
+                                    0,
+                                    operand1.getText().length() - 1));
                 }
                 break;
         }//switch
