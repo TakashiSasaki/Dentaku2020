@@ -2,7 +2,6 @@ package jp.ac.kawahara.t_sasaki.myapplication;
 
 import android.annotation.SuppressLint;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,34 +29,37 @@ public class ButtonClickListener
 
         switch ((String) v.getTag()) {
             case "zero":
-                this.inputOneNumber(0);
+                this.inputOneNumber('0');
                 break;
             case "one":
-                this.inputOneNumber(1);
+                this.inputOneNumber('1');
                 break;
             case "two":
-                this.inputOneNumber(2);
+                this.inputOneNumber('2');
                 break;
             case "three":
-                this.inputOneNumber(3);
+                this.inputOneNumber('3');
                 break;
             case "four":
-                this.inputOneNumber(4);
+                this.inputOneNumber('4');
                 break;
             case "five":
-                this.inputOneNumber(5);
+                this.inputOneNumber('5');
                 break;
             case "six":
-                this.inputOneNumber(6);
+                this.inputOneNumber('6');
                 break;
             case "seven":
-                this.inputOneNumber(7);
+                this.inputOneNumber('7');
                 break;
             case "eight":
-                this.inputOneNumber(8);
+                this.inputOneNumber('8');
                 break;
             case "nine":
-                this.inputOneNumber(9);
+                this.inputOneNumber('9');
+                break;
+            case "dot":
+                this.inputOneNumber('.');
                 break;
             case "plus":
                 operator.setText("+");
@@ -131,19 +133,47 @@ public class ButtonClickListener
                                     operand1.getText().length() - 1));
                 }
                 break;
+            case "sign":
+                if (!operand2.getText().toString().contentEquals("")) {
+                    if (operand2.getText().toString().substring(0, 1).contentEquals("-")) {
+                        operand2.setText(operand2.getText().toString().substring(
+                                1,
+                                operand2.getText().toString().length()));
+                    } else {
+                        operand2.setText(String.format(Locale.US,
+                                "%c%s",
+                                '-',
+                                operand2.getText().toString()
+                        ));
+                    }
+                } else if (!operand1.getText().toString().contentEquals("")) {
+                    if (operand1.getText().toString().substring(0, 1).contentEquals("-")) {
+                        operand1.setText(operand1.getText().toString().substring(
+                                1,
+                                operand1.getText().toString().length()));
+                    } else {
+                        operand1.setText(String.format(Locale.US,
+                                "%c%s",
+                                '-',
+                                operand1.getText().toString()
+                        ));
+                    }
+                }
+                break;
+            default:
         }//switch
     }//onClick
 
-    private void inputOneNumber(final int i) {
+    private void inputOneNumber(final char i) {
         if (operator.getText().toString().contentEquals(""))
             operand1.setText(
                     String.format(Locale.US,
-                            "%s%d",
+                            "%s%c",
                             operand1.getText().toString(), i));
         else
             operand2.setText(
                     String.format(Locale.US,
-                            "%s%d",
+                            "%s%c",
                             operand2.getText().toString(), i));
 
     }//inputOneNumber
